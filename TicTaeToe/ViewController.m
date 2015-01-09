@@ -28,7 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.winningScores = [NSArray arrayWithObjects:@"1187",@"1565",@"1937",@"1563",@"1894",@"1561",@"1234",@"1563", nil];
+    self.winningScores = [NSArray arrayWithObjects:@"761",@"1193",@"1565",@"862",@"1189",@"1522",@"1191",@"1191", nil];
 
     [self   firstRound];
 }
@@ -53,6 +53,7 @@
             label.text = self.player;
             label.textColor = self.playerColor;
              score = label.center.x + label.center.y;
+            NSLog(@"@%i",score);
         }
     }
     [self setScore:score];
@@ -71,7 +72,8 @@
 
 -(void)checkPlayerScore {
     for (NSNumber* enumScore in self.winningScores ) {
-        NSLog(@"%@ ",enumScore );
+
+        //NSLog(@"%@ ",enumScore );
 
         if ( [enumScore integerValue] == self.playerXScore) {
        NSLog(@"player x won");
