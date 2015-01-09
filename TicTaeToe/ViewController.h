@@ -9,7 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController
+@property NSArray* winningScores;
 
+@property NSString* player;
+@property UIColor *playerColor;
+@property int playerXScore;
+@property int playerOScore;
 
 @end
 

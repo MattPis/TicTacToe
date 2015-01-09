@@ -20,8 +20,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *LabelNine;
 @property (strong, nonatomic) IBOutlet UILabel *whichPlayerLabel;
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *labels;
-@property NSString* player;
-@property UIColor *playerColor;
+
 
 @end
 
@@ -29,56 +28,88 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.winningScores = [NSArray arrayWithObjects:@"1187",@"1565",@"1937",@"1563",@"1894",@"1561",@"1234",@"1563", nil];
+
+    [self   firstRound];
+}
+-(void)firstRound{
     self.player = @"x";
     self.playerColor = [UIColor blueColor];
-    self.whichPlayerLabel.text = @"PLAYER X";
-
+    self.whichPlayerLabel.textColor = self.playerColor;
+    self.whichPlayerLabel.text = @"x";
 }
+
 - (IBAction)findLabelTapped:(UITapGestureRecognizer *)sender {
     CGPoint point = [sender locationInView:self.view];
     [self findLabelUsingPoint:point];
-
-
-
-
 }
 
 
 -(void) findLabelUsingPoint: (CGPoint)point{
 
-    NSLog(@"%f, %f",point.x, point.y);
-
+    int score = 0;
     for (UILabel* label in self.labels){
-        if (CGRectContainsPoint(label.frame, point)) {
+        if ((CGRectContainsPoint(label.frame, point))&&([label.text isEqualToString:@""])) {
             label.text = self.player;
             label.textColor = self.playerColor;
-            [self switchPlayer:label];
+             score = label.center.x + label.center.y;
         }
     }
-
-
-
-
-
+    [self setScore:score];
 
 }
--(void)switchPlayer:(UILabel*)label{
+-(void)setScore:(int)score{
     if ([self.player isEqualToString:@"x"]) {
+        self.playerXScore += score;
+    }
+    else
+    {
+        self.playerOScore += score;
+    }
+    [self checkPlayerScore];
+}
+
+-(void)checkPlayerScore {
+    for (NSNumber* enumScore in self.winningScores ) {
+        NSLog(@"%@ ",enumScore );
+
+        if ( [enumScore integerValue] == self.playerXScore) {
+       NSLog(@"player x won");
+            [self alertWinner:@"x"];
+        }
+
+        else if ([enumScore integerValue]==self.playerOScore) {
+            [self alertWinner:@"o"];
+        }
+    }
+    [self changePlayer];
+
+}
+-(void)changePlayer{
+    if ([self.player isEqualToString:@"x"]) {
+
         self.player = @"o";
         self.playerColor = [UIColor redColor];
-        self.whichPlayerLabel.text = @"PLAYER O";
-
-
-
+        self.whichPlayerLabel.text = @"o";
+        self.whichPlayerLabel.textColor = self.playerColor;
     }
     else
     {
         self.player= @"x";
         self.playerColor = [UIColor blueColor];
-        self.whichPlayerLabel.text = @"PLAYER X";
-        
-        
+        self.whichPlayerLabel.text = @"x";
+        self.whichPlayerLabel.textColor = self.playerColor;
     }
+
 }
+-(void)alertWinner: (NSString*)winnerName{
+    NSString * message = [[NSString alloc]initWithFormat:@"The winner is:%@",winnerName];
+    UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"WINNER" message:message  delegate:self cancelButtonTitle:@"Next round" otherButtonTitles: nil];
+    [alert show];
+
+}
+
+
+
 
 @end
