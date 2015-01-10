@@ -38,8 +38,6 @@
     self.playerColor = [UIColor blueColor];
     self.whichPlayerLabel.textColor = self.playerColor;
     self.whichPlayerLabel.text = @"x";
-    self.playerXScore = 0;
-    self.playerOScore = 0;
  for (UILabel* label in self.labels){
      label.text = @"";
  }
