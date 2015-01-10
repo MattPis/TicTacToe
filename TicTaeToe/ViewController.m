@@ -64,12 +64,78 @@
 
         }
     }
-
+    [self checkIfXwins];
+}
+    -(void)checkIfXwins{
     if([self.LabelOne.text isEqualToString:@"x"]&&[self.LabelTwo.text isEqualToString:@"x"]&&[self.LabelThree.text isEqualToString:@"x"]){
         [self alertWinner:@"x"];
-    }
-    [self changePlayer];
+    } else if([self.LabelOne.text isEqualToString:@"x"]&&[self.LabelFour.text isEqualToString:@"x"]&&[self.LabelSeven.text isEqualToString:@"x"]){
+        [self alertWinner:@"x"];
+    }else if([self.LabelOne.text isEqualToString:@"x"]&&[self.LabelFive.text isEqualToString:@"x"]&&[self.LabelNine.text isEqualToString:@"x"]){
+        [self alertWinner:@"x"];
+    }else if([self.LabelOne.text isEqualToString:@"x"]&&[self.LabelFive.text isEqualToString:@"x"]&&[self.LabelNine.text isEqualToString:@"x"]){
+        [self alertWinner:@"x"];
+    }else if([self.LabelTwo.text isEqualToString:@"x"]&&[self.LabelFive.text isEqualToString:@"x"]&&[self.LabelEight.text isEqualToString:@"x"]){
+        [self alertWinner:@"x"];
+    }else if([self.LabelThree.text isEqualToString:@"x"]&&[self.LabelFive.text isEqualToString:@"x"]&&[self.LabelSeven.text isEqualToString:@"x"]){
+        [self alertWinner:@"x"];
+    }else if([self.LabelThree.text isEqualToString:@"x"]&&[self.LabelSix.text isEqualToString:@"x"]&&[self.LabelNine.text isEqualToString:@"x"]){
+        [self alertWinner:@"x"];
+    }else if([self.LabelFour.text isEqualToString:@"x"]&&[self.LabelFive.text isEqualToString:@"x"]&&[self.LabelSix.text isEqualToString:@"x"]){
+        [self alertWinner:@"x"];
+    }else if([self.LabelSeven.text isEqualToString:@"x"]&&[self.LabelEight.text isEqualToString:@"x"]&&[self.LabelNine.text isEqualToString:@"x"]){
+        [self alertWinner:@"x"];
+    }else {
+        [self checkIfOwins];    }
+
 }
+
+-(void)checkIfOwins{
+    if([self.LabelOne.text isEqualToString:@"o"]&&[self.LabelTwo.text isEqualToString:@"o"]&&[self.LabelThree.text isEqualToString:@"o"]){
+        [self alertWinner:@"o"];
+    } else if([self.LabelOne.text isEqualToString:@"o"]&&[self.LabelFour.text isEqualToString:@"o"]&&[self.LabelSeven.text isEqualToString:@"o"]){
+        [self alertWinner:@"o"];
+    }else if([self.LabelOne.text isEqualToString:@"o"]&&[self.LabelFive.text isEqualToString:@"o"]&&[self.LabelNine.text isEqualToString:@"o"]){
+        [self alertWinner:@"o"];
+    }else if([self.LabelOne.text isEqualToString:@"o"]&&[self.LabelFive.text isEqualToString:@"o"]&&[self.LabelNine.text isEqualToString:@"o"]){
+        [self alertWinner:@"o"];
+    }else if([self.LabelTwo.text isEqualToString:@"o"]&&[self.LabelFive.text isEqualToString:@"o"]&&[self.LabelEight.text isEqualToString:@"o"]){
+        [self alertWinner:@"o"];
+    }else if([self.LabelThree.text isEqualToString:@"o"]&&[self.LabelFive.text isEqualToString:@"o"]&&[self.LabelSeven.text isEqualToString:@"o"]){
+        [self alertWinner:@"o"];
+    }else if([self.LabelThree.text isEqualToString:@"o"]&&[self.LabelSix.text isEqualToString:@"o"]&&[self.LabelNine.text isEqualToString:@"o"]){
+        [self alertWinner:@"o"];
+    }else if([self.LabelFour.text isEqualToString:@"o"]&&[self.LabelFive.text isEqualToString:@"o"]&&[self.LabelSix.text isEqualToString:@"o"]){
+        [self alertWinner:@"o"];
+    }else if([self.LabelSeven.text isEqualToString:@"o"]&&[self.LabelEight.text isEqualToString:@"o"]&&[self.LabelNine.text isEqualToString:@"o"]){
+        [self alertWinner:@"o"];
+    }else {
+        [self checkIfDraw];    }
+
+}
+-(void)checkIfDraw{
+    int usedLabels =0;
+    for (UILabel *label in self.labels) {
+        if (![label.text isEqualToString:@""]) {
+            NSLog(@"option one");
+            usedLabels++;
+        }
+        else{
+            NSLog(@"option Two");
+        }
+    }
+    
+    if (usedLabels ==9) {
+        [self alertWinner:@"draw"];
+    }
+    else {
+       [self changePlayer];
+
+    }
+
+
+}
+
 
 -(void)changePlayer{
     if ([self.player isEqualToString:@"x"]) {
