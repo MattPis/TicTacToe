@@ -13,8 +13,6 @@
 
 @property NSString* player;
 @property UIColor *playerColor;
-@property int playerXScore;
-@property int playerOScore;
 
 @end
 
