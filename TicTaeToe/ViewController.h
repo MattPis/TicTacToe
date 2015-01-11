@@ -13,6 +13,12 @@
 
 @property NSString* player;
 @property UIColor *playerColor;
+@property NSMutableArray *playerXArray;
+@property NSMutableArray *playerOArray;
+
+@property NSArray *winningPatterns;
+@property NSArray *labelPositionArray;
+@property int takaenLabelsNr;
 
 @end
 

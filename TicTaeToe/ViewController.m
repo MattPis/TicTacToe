@@ -29,15 +29,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.winningPatterns = [[NSMutableArray alloc] initWithObjects:@"123",@"456",@"789",@"147",@"258",@"369",@"159",@"357", nil];
+    self.playerXArray = [[NSMutableArray alloc]init];
+    self.playerOArray = [[NSMutableArray alloc]init];
     [self   resetRound];
 }
 
 
 -(void)resetRound{
     self.player = @"x";
-    self.playerColor = [UIColor blueColor];
+    self.playerColor = [UIColor colorWithRed:(111/255.0) green:(133/255.0) blue:(197/255.0) alpha:1.0];
     self.whichPlayerLabel.textColor = self.playerColor;
     self.whichPlayerLabel.text = @"x";
+    self.takaenLabelsNr =0;
+    [self.playerXArray removeAllObjects];
+    [self.playerOArray removeAllObjects];
+
+
  for (UILabel* label in self.labels){
      label.text = @"";
  }
@@ -54,83 +62,90 @@
 
 -(void) findLabelUsingPoint: (CGPoint)point{
 
-
     for (UILabel* label in self.labels){
-        if ((CGRectContainsPoint(label.frame, point))&&([label.text isEqualToString:@"" ])) {
+        if ((CGRectContainsPoint(label.frame, point))&&([label.text isEqualToString:@"" ]&&([self.player  isEqual: @"x"]))) {
+
+            //add label number to player x array
+            [self.playerXArray addObject:[NSString stringWithFormat:@"%ld", (long)label.tag]];
+
+            //code below overides tapped label for player identity
             label.text = self.player;
             label.textColor = self.playerColor;
+            self.takaenLabelsNr ++;
+            [self checkIfXwins];
 
         }
+        else  if ((CGRectContainsPoint(label.frame, point))&&([label.text isEqualToString:@"" ]&&([self.player  isEqual: @"o"]))) {
+
+            //add label number to player x array
+            [self.playerOArray addObject:[NSString stringWithFormat:@"%ld", (long)label.tag]];
+
+            //code below overides tapped label for player identity
+            label.text = self.player;
+            label.textColor = self.playerColor;
+            self.takaenLabelsNr ++;
+
+            [self checkIfXwins];
+            
+        }
+
+
     }
-    [self checkIfXwins];
-}
-    -(void)checkIfXwins{
-    if([self.LabelOne.text isEqualToString:@"x"]&&[self.LabelTwo.text isEqualToString:@"x"]&&[self.LabelThree.text isEqualToString:@"x"]){
-        [self alertWinner:@"x"];
-    } else if([self.LabelOne.text isEqualToString:@"x"]&&[self.LabelFour.text isEqualToString:@"x"]&&[self.LabelSeven.text isEqualToString:@"x"]){
-        [self alertWinner:@"x"];
-    }else if([self.LabelOne.text isEqualToString:@"x"]&&[self.LabelFive.text isEqualToString:@"x"]&&[self.LabelNine.text isEqualToString:@"x"]){
-        [self alertWinner:@"x"];
-    }else if([self.LabelOne.text isEqualToString:@"x"]&&[self.LabelFive.text isEqualToString:@"x"]&&[self.LabelNine.text isEqualToString:@"x"]){
-        [self alertWinner:@"x"];
-    }else if([self.LabelTwo.text isEqualToString:@"x"]&&[self.LabelFive.text isEqualToString:@"x"]&&[self.LabelEight.text isEqualToString:@"x"]){
-        [self alertWinner:@"x"];
-    }else if([self.LabelThree.text isEqualToString:@"x"]&&[self.LabelFive.text isEqualToString:@"x"]&&[self.LabelSeven.text isEqualToString:@"x"]){
-        [self alertWinner:@"x"];
-    }else if([self.LabelThree.text isEqualToString:@"x"]&&[self.LabelSix.text isEqualToString:@"x"]&&[self.LabelNine.text isEqualToString:@"x"]){
-        [self alertWinner:@"x"];
-    }else if([self.LabelFour.text isEqualToString:@"x"]&&[self.LabelFive.text isEqualToString:@"x"]&&[self.LabelSix.text isEqualToString:@"x"]){
-        [self alertWinner:@"x"];
-    }else if([self.LabelSeven.text isEqualToString:@"x"]&&[self.LabelEight.text isEqualToString:@"x"]&&[self.LabelNine.text isEqualToString:@"x"]){
-        [self alertWinner:@"x"];
-    }else {
-        [self checkIfOwins];    }
 
 }
+-(void)checkIfXwins{
+    int localScore = 0;
+
+    for (NSString *winPatternFinder in self.winningPatterns){
+        localScore = 0;
+
+        for (NSString *playerScoreMatchNr in self.playerXArray) {
+
+            if ([winPatternFinder containsString:playerScoreMatchNr]){
+                localScore ++;
+            }
+        }
+
+        if (localScore ==3){
+            [self alertWinner:@"The Winner is X"];
+        }
+    }
+    [self checkIfOwins];
+   }
+
 
 -(void)checkIfOwins{
-    if([self.LabelOne.text isEqualToString:@"o"]&&[self.LabelTwo.text isEqualToString:@"o"]&&[self.LabelThree.text isEqualToString:@"o"]){
-        [self alertWinner:@"o"];
-    } else if([self.LabelOne.text isEqualToString:@"o"]&&[self.LabelFour.text isEqualToString:@"o"]&&[self.LabelSeven.text isEqualToString:@"o"]){
-        [self alertWinner:@"o"];
-    }else if([self.LabelOne.text isEqualToString:@"o"]&&[self.LabelFive.text isEqualToString:@"o"]&&[self.LabelNine.text isEqualToString:@"o"]){
-        [self alertWinner:@"o"];
-    }else if([self.LabelOne.text isEqualToString:@"o"]&&[self.LabelFive.text isEqualToString:@"o"]&&[self.LabelNine.text isEqualToString:@"o"]){
-        [self alertWinner:@"o"];
-    }else if([self.LabelTwo.text isEqualToString:@"o"]&&[self.LabelFive.text isEqualToString:@"o"]&&[self.LabelEight.text isEqualToString:@"o"]){
-        [self alertWinner:@"o"];
-    }else if([self.LabelThree.text isEqualToString:@"o"]&&[self.LabelFive.text isEqualToString:@"o"]&&[self.LabelSeven.text isEqualToString:@"o"]){
-        [self alertWinner:@"o"];
-    }else if([self.LabelThree.text isEqualToString:@"o"]&&[self.LabelSix.text isEqualToString:@"o"]&&[self.LabelNine.text isEqualToString:@"o"]){
-        [self alertWinner:@"o"];
-    }else if([self.LabelFour.text isEqualToString:@"o"]&&[self.LabelFive.text isEqualToString:@"o"]&&[self.LabelSix.text isEqualToString:@"o"]){
-        [self alertWinner:@"o"];
-    }else if([self.LabelSeven.text isEqualToString:@"o"]&&[self.LabelEight.text isEqualToString:@"o"]&&[self.LabelNine.text isEqualToString:@"o"]){
-        [self alertWinner:@"o"];
-    }else {
-        [self checkIfDraw];    }
+    int localScore = 0;
 
+    for (NSString *winPatternFinder in self.winningPatterns){
+        localScore = 0;
+
+        for (NSString *playerScoreMatchNr in self.playerOArray) {
+
+            if ([winPatternFinder containsString:playerScoreMatchNr]){
+                localScore ++;
+                NSLog(@"adding score");
+            }
+        }
+
+        if (localScore ==3){
+            [self alertWinner:@"The Winner is O"];
+        }
+    }
+    [self checkIfDraw];
 }
+
+
+
 -(void)checkIfDraw{
-    int usedLabels =0;
-    for (UILabel *label in self.labels) {
-        if (![label.text isEqualToString:@""]) {
-            NSLog(@"option one");
-            usedLabels++;
-        }
-        else{
-            NSLog(@"option Two");
-        }
-    }
-    
-    if (usedLabels ==9) {
-        [self alertWinner:@"draw"];
-    }
-    else {
-       [self changePlayer];
+
+    if (self.takaenLabelsNr <9) {
+        [self changePlayer];
 
     }
-
+    else if (self.takaenLabelsNr ==9) {
+        [self alertWinner:@"It's a Draw"];
+    }
 
 }
 
@@ -139,22 +154,22 @@
     if ([self.player isEqualToString:@"x"]) {
 
         self.player = @"o";
-        self.playerColor = [UIColor redColor];
+        self.playerColor = [UIColor colorWithRed:(216/255.0) green:(78/255.0) blue:(39/255.0) alpha:1.0];
         self.whichPlayerLabel.text = @"o";
         self.whichPlayerLabel.textColor = self.playerColor;
     }
     else
     {
         self.player= @"x";
-        self.playerColor = [UIColor blueColor];
+        self.playerColor = [UIColor colorWithRed:(111/255.0) green:(133/255.0) blue:(197/255.0) alpha:1.0];
         self.whichPlayerLabel.text = @"x";
         self.whichPlayerLabel.textColor = self.playerColor;
     }
 
 }
 -(void)alertWinner: (NSString*)winnerName{
-    NSString * message = [[NSString alloc]initWithFormat:@"The winner is:%@",winnerName];
-    UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"WINNER" message:message  delegate:self cancelButtonTitle:nil otherButtonTitles: @"START OVER",nil];
+    NSString * message = [[NSString alloc]initWithFormat:@"%@",winnerName];
+    UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"GAME OVER" message:message  delegate:self cancelButtonTitle:nil otherButtonTitles: @"Play Again",nil];
     [alert show];
 
 }
