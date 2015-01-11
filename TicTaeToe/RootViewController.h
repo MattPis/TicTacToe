@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface RootViewController : UIViewController
 @property NSArray* winningScores;
 
 @property NSString* player;
@@ -17,8 +17,10 @@
 @property NSMutableArray *playerOArray;
 
 @property NSArray *winningPatterns;
-@property NSArray *labelPositionArray;
-@property int takaenLabelsNr;
+@property int takenLabelAmmount;
+
+@property int timerInt;
+@property NSTimer *timer;
 
 @end
 
