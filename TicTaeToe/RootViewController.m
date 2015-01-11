@@ -78,9 +78,16 @@
         self.timerLabel.textColor = [UIColor blackColor];
     }
 }
+- (IBAction)getPan:(UIPanGestureRecognizer *)sender {
+    CGPoint point = [sender locationInView:self.view];
+    if (CGRectContainsPoint(self.whichPlayerLabel.frame, point)) {
+        self.whichPlayerLabel.center = point;
+        [self findLabelUsingPoint:point];
+    }
+}
 
 
-- (IBAction)findLabelTapped:(UITapGestureRecognizer *)sender {  //pass parameter to findLabelUsing point when touched
+- (IBAction)getLabelPoint:(UITapGestureRecognizer *)sender {  //pass parameter to findLabelUsing point when touched
     CGPoint point = [sender locationInView:self.view];
     [self findLabelUsingPoint:point];
 }

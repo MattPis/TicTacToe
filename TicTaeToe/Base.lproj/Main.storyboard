@@ -18,17 +18,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bhl-rp-XaD">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="X" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bhl-rp-XaD">
                                 <rect key="frame" x="139" y="312" width="42" height="46"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="B8N-pZ-r8i">
-                                        <variation key="widthClass=compact" constant="50"/>
+                                        <variation key="widthClass=compact" constant="80"/>
                                     </constraint>
                                     <constraint firstAttribute="height" constant="60" id="VuF-Uo-d9r">
-                                        <variation key="widthClass=compact" constant="44"/>
+                                        <variation key="widthClass=compact" constant="80"/>
                                     </constraint>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="30"/>
+                                <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="80"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -40,28 +40,6 @@
                                     <mask key="constraints">
                                         <include reference="B8N-pZ-r8i"/>
                                         <include reference="VuF-Uo-d9r"/>
-                                    </mask>
-                                </variation>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turn:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nIM-Oj-fwZ">
-                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="42" id="G8G-TE-9Pt"/>
-                                    <constraint firstAttribute="height" constant="21" id="Shg-rZ-hKo"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="G8G-TE-9Pt"/>
-                                        <exclude reference="Shg-rZ-hKo"/>
-                                    </mask>
-                                </variation>
-                                <variation key="widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="G8G-TE-9Pt"/>
-                                        <include reference="Shg-rZ-hKo"/>
                                     </mask>
                                 </variation>
                             </label>
@@ -249,6 +227,28 @@
                                     </mask>
                                 </variation>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turn:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nIM-Oj-fwZ">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="42" id="G8G-TE-9Pt"/>
+                                    <constraint firstAttribute="height" constant="21" id="Shg-rZ-hKo"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="G8G-TE-9Pt"/>
+                                        <exclude reference="Shg-rZ-hKo"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="G8G-TE-9Pt"/>
+                                        <include reference="Shg-rZ-hKo"/>
+                                    </mask>
+                                </variation>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -263,7 +263,7 @@
                                 <variation key="widthClass=compact" constant="24"/>
                             </constraint>
                             <constraint firstItem="nIM-Oj-fwZ" firstAttribute="top" secondItem="F05-cb-Sem" secondAttribute="bottom" constant="134" id="9Rc-Q8-zo0">
-                                <variation key="widthClass=compact" constant="120"/>
+                                <variation key="widthClass=compact" constant="100"/>
                             </constraint>
                             <constraint firstItem="McD-9L-onO" firstAttribute="height" secondItem="9m2-cd-cf9" secondAttribute="height" id="9og-kT-pFc"/>
                             <constraint firstItem="P0h-SZ-W8U" firstAttribute="top" secondItem="kea-Os-fUn" secondAttribute="bottom" constant="24" id="A9C-F7-Ksq"/>
@@ -306,9 +306,6 @@
                                 <variation key="widthClass=compact" constant="8"/>
                             </constraint>
                             <constraint firstItem="Di3-O7-ALc" firstAttribute="leading" secondItem="G4h-Sg-sYa" secondAttribute="trailing" constant="20" id="cvR-pd-9fv"/>
-                            <constraint firstItem="bhl-rp-XaD" firstAttribute="top" secondItem="9m2-cd-cf9" secondAttribute="bottom" constant="121" id="fZX-LV-tuF">
-                                <variation key="widthClass=compact" constant="107"/>
-                            </constraint>
                             <constraint firstItem="F05-cb-Sem" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="14" id="gN0-cz-cFh"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="bhl-rp-XaD" secondAttribute="bottom" id="hFZ-Kt-OJy">
                                 <variation key="widthClass=compact" constant="8"/>
@@ -332,7 +329,7 @@
                                 <variation key="widthClass=compact" constant="154"/>
                             </constraint>
                             <constraint firstItem="nIM-Oj-fwZ" firstAttribute="top" secondItem="XHW-9e-my0" secondAttribute="bottom" constant="139" id="tBn-OO-vQ9">
-                                <variation key="widthClass=compact" constant="126"/>
+                                <variation key="widthClass=compact" constant="106"/>
                             </constraint>
                             <constraint firstItem="McD-9L-onO" firstAttribute="width" secondItem="gbi-cw-YzG" secondAttribute="width" id="uB5-SE-gjJ"/>
                             <constraint firstItem="OH7-0t-Nnk" firstAttribute="top" secondItem="zWz-q6-pAC" secondAttribute="bottom" constant="7" id="uBD-wj-qVi">
@@ -345,7 +342,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="P0h-SZ-W8U" secondAttribute="trailing" constant="14" id="wJA-RX-tgh"/>
                             <constraint firstItem="McD-9L-onO" firstAttribute="leading" secondItem="gbi-cw-YzG" secondAttribute="trailing" constant="20" id="x03-pf-pFN"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="nIM-Oj-fwZ" secondAttribute="bottom" constant="12" id="xfF-Ou-eUb">
-                                <variation key="widthClass=compact" constant="18"/>
+                                <variation key="widthClass=compact" constant="38"/>
                             </constraint>
                             <constraint firstItem="kea-Os-fUn" firstAttribute="top" secondItem="zWz-q6-pAC" secondAttribute="bottom" constant="25" id="xyc-Ml-MAX"/>
                             <constraint firstItem="McD-9L-onO" firstAttribute="height" secondItem="P0h-SZ-W8U" secondAttribute="height" id="ylr-lF-JjP"/>
@@ -360,13 +357,13 @@
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="bhl-rp-XaD"/>
-                                <exclude reference="nIM-Oj-fwZ"/>
                                 <exclude reference="OH7-0t-Nnk"/>
                                 <exclude reference="JOR-y7-U4q"/>
                                 <exclude reference="XHW-9e-my0"/>
                                 <exclude reference="Kki-2b-pGr"/>
                                 <exclude reference="uIf-VQ-CYf"/>
                                 <exclude reference="fQr-zq-s9j"/>
+                                <exclude reference="nIM-Oj-fwZ"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="5dP-1b-iDf"/>
@@ -431,7 +428,6 @@
                                 <exclude reference="nzU-gC-J9W"/>
                                 <exclude reference="xfF-Ou-eUb"/>
                                 <exclude reference="Epi-Cz-uln"/>
-                                <exclude reference="fZX-LV-tuF"/>
                                 <exclude reference="sh3-Xe-TJf"/>
                                 <exclude reference="zhO-Vn-Im0"/>
                             </mask>
@@ -439,13 +435,13 @@
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="bhl-rp-XaD"/>
-                                <include reference="nIM-Oj-fwZ"/>
                                 <include reference="OH7-0t-Nnk"/>
                                 <include reference="JOR-y7-U4q"/>
                                 <include reference="XHW-9e-my0"/>
                                 <include reference="Kki-2b-pGr"/>
                                 <include reference="uIf-VQ-CYf"/>
                                 <include reference="fQr-zq-s9j"/>
+                                <include reference="nIM-Oj-fwZ"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="5dP-1b-iDf"/>
@@ -510,13 +506,13 @@
                                 <include reference="nzU-gC-J9W"/>
                                 <include reference="xfF-Ou-eUb"/>
                                 <include reference="Epi-Cz-uln"/>
-                                <include reference="fZX-LV-tuF"/>
                                 <exclude reference="sh3-Xe-TJf"/>
                                 <include reference="zhO-Vn-Im0"/>
                             </mask>
                         </variation>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="MFf-30-SLA" appends="YES" id="jHL-uF-LQ9"/>
+                            <outletCollection property="gestureRecognizers" destination="9vj-5U-X2v" appends="YES" id="EMR-Ry-0Il"/>
                         </connections>
                     </view>
                     <connections>
@@ -545,9 +541,15 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="MFf-30-SLA">
                     <connections>
-                        <action selector="findLabelTapped:" destination="vXZ-lx-hvc" id="sJy-ah-EDE"/>
+                        <action selector="getLabelPoint:" destination="vXZ-lx-hvc" id="RhN-Ku-jWR"/>
                     </connections>
                 </tapGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="9vj-5U-X2v">
+                    <connections>
+                        <action selector="getPan:" destination="vXZ-lx-hvc" id="Liq-Ey-tYH"/>
+                        <outlet property="delegate" destination="vXZ-lx-hvc" id="oMm-TO-iig"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="250.5" y="112"/>
         </scene>
