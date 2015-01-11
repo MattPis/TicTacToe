@@ -8,7 +8,7 @@
 
 #import "RootViewController.h"
 
-@interface RootViewController ()
+@interface RootViewController ()<UIGestureRecognizerDelegate>
 @property (strong, nonatomic) IBOutlet UILabel *LabelOne;
 @property (strong, nonatomic) IBOutlet UILabel *LabelTwo;
 @property (strong, nonatomic) IBOutlet UILabel *LabelThree;
@@ -18,10 +18,11 @@
 @property (strong, nonatomic) IBOutlet UILabel *LabelSeven;
 @property (strong, nonatomic) IBOutlet UILabel *LabelEight;
 @property (strong, nonatomic) IBOutlet UILabel *LabelNine;
-@property (strong, nonatomic) IBOutlet UILabel *whichPlayerLabel;
+@property (strong, readwrite) IBOutlet UILabel *whichPlayerLabel;
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSMutableArray *labels;
-@property (weak, nonatomic) IBOutlet UILabel *timerLabel;
-;
+
+@property (weak, nonatomic) IBOutlet UITextView *timerLabel;
+
 
 
 @end
@@ -35,7 +36,7 @@
     self.playerOArray = [[NSMutableArray alloc]init];
     self.navigationController.navigationBarHidden =YES;
     self.timerLabel.textColor = [UIColor whiteColor];
-    [self   resetGame];
+    [self  resetGame];
 }
 
 
@@ -50,39 +51,52 @@
  for (UILabel* label in self.labels){       //reset labels identity
      label.text = @"";
  }
-    [self.timer invalidate];
+    self.pauseTimer=NO;
+    [timer invalidate];
+        timer = nil;
     [self startTimer];
+
 }
 
 
 -(void)startTimer{              //timer method declaration
     self.timerInt=16;
 
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateCountdown) userInfo:self repeats:YES];
+
+    timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateCountdown) userInfo:self repeats:YES];
 }
 
 -(void)updateCountdown{     //timer coundDown (runs every second after timer is started)
     self.timerInt -=1;
-    self.timerLabel.text =[NSString stringWithFormat: @"Time to go :%i",self.timerInt];
+   self.timerLabel.text = [NSString stringWithFormat: @"Time to go :%i",self.timerInt];
 
 
-    if(self.timerInt == 0){     //if runed out of time reset timer and switch player
-        [self.timer invalidate];
+    if (self.pauseTimer==YES){
+        self.timerInt +=1;
+    }
+   else if(self.timerInt == 0){     //if runed out of time reset timer and switch player
+        [timer invalidate];
         self.timerLabel.text = @"switching player";
         [self changePlayer];
     }
     else if (self.timerInt<4){     //change color of timer label when 3 seconds left
         self.timerLabel.textColor = [UIColor redColor];
     }
-    else{
+
+    else if (self.timerInt>3){
         self.timerLabel.textColor = [UIColor blackColor];
     }
+
+
+    //view is updated every second in order of NSTimer
 }
-- (IBAction)getPan:(UIPanGestureRecognizer *)sender {
+- (IBAction)labelDragged:(UIPanGestureRecognizer *)sender {
     CGPoint point = [sender locationInView:self.view];
     if (CGRectContainsPoint(self.whichPlayerLabel.frame, point)) {
         self.whichPlayerLabel.center = point;
-        [self findLabelUsingPoint:point];
+        if (sender.state == UIGestureRecognizerStateEnded){
+            [self findLabelUsingPoint:point];
+        }
     }
 }
 
@@ -169,12 +183,13 @@
 
 -(void)checkIfDraw{
 
-    if (self.takenLabelAmmount <9) {
-        [self changePlayer];
-    }
-    else if (self.takenLabelAmmount==9)  {
+
+     if (self.takenLabelAmmount==9)  {
         [self.playerXArray removeAllObjects];
         [self alertWinner:@"It's a Draw"];
+    }
+    else if (self.takenLabelAmmount <9) {
+        [self changePlayer];
     }
 }
 
@@ -187,23 +202,26 @@
         self.whichPlayerLabel.text = @"o";
         self.whichPlayerLabel.textColor = self.playerColor;
     }
-    else
-    {
+    else{
+
+
         self.player= @"x";
         self.playerColor = [UIColor colorWithRed:(111/255.0) green:(133/255.0) blue:(197/255.0) alpha:1.0];
         self.whichPlayerLabel.text = @"x";
         self.whichPlayerLabel.textColor = self.playerColor;
     }
-    [self.timer invalidate];
+    [timer invalidate];
+    timer = nil;
     [self startTimer];
 
 }
 -(void)alertWinner: (NSString*)winnerName{
     NSString * message = [[NSString alloc]initWithFormat:@"%@",winnerName];
     UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"GAME OVER" message:message  delegate:self cancelButtonTitle:nil otherButtonTitles: @"Play Again",nil];
-
-    self.timerLabel.text = @"GAME OVER";
-
+    self.pauseTimer=YES;
+    [timer invalidate];
+    timer = nil;
+    [self startTimer];
     [alert show];
 }
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex{

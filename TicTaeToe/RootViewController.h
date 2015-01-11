@@ -9,6 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface RootViewController : UIViewController
+{
+    NSTimer *timer;
+
+
+}
 @property NSArray* winningScores;
 
 @property NSString* player;
@@ -20,7 +25,8 @@
 @property int takenLabelAmmount;
 
 @property int timerInt;
-@property NSTimer *timer;
+@property BOOL pauseTimer;
+
 
 @end
 
